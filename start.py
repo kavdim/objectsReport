@@ -7,6 +7,6 @@ import addFiles
 from os.path import isfile
 
 if isfile('listGroup.xml'):
-    pass
+    print('*')
 else:
     addFiles.addFiles()
