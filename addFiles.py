@@ -29,13 +29,12 @@ def addFiles():
             var.text = str(s[0])
             var = ET.SubElement(groupItems, 'var')
             var.set('name', str(s[1]))
-            print(s[1])
             var.text = str(s[1])
             var = ET.SubElement(groupItems, 'var')
             var.set('name', 'Enabled')
             var.text = 'False'
 
-        myGroup = ET.tostring(listGroup).decode('ansi')
+        myGroup = ET.tostring(listGroup).decode('utf-8')
 
         file = open('listGroup.xml', 'w')
         file.write('<?xml version="1.0" encoding="utf-8" standalone="no" ?>\n')
