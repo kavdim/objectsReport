@@ -5,17 +5,6 @@ import postgresql
 
 # Проверяем наличие файлов, при отсутствии создаем их
 def addFiles():
-    if isfile('listObjects.xml') != True:    # объекты для формирования отчетов
-        listObjects = ET.Element('listObjects')
-        listItems = ET.SubElement(listObjects, 'listItems')
-
-        print("Создание listObjects.xml")
-        myList = ET.tostring(listObjects)
-        file = open('listObjects.xml', 'w', encoding="utf-8")
-        file.write('<?xml version="1.0" encoding="utf-8" standalone="no" ?>\n')
-        file.write(str(myList).encode('utf-8'))
-        file.close()
-
     if isfile('listGroup.xml') != True: #Управление группами
         db = postgresql.open('pq://root:root@localhost:5432/mgs?client_encoding=utf8')
         query = db.query('SELECT objectgroup.group_number, objectgroup.name FROM objectgroup')
