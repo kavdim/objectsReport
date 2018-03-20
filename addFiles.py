@@ -9,8 +9,9 @@ def addFiles():
         listObjects = ET.Element('listObjects')
         listItems = ET.SubElement(listObjects, 'listItems')
 
+        print("Создание listObjects.xml")
         myList = ET.tostring(listObjects)
-        file = open('delObjects.xml', 'w', encoding="utf-8")
+        file = open('listObjects.xml', 'w', encoding="utf-8")
         file.write('<?xml version="1.0" encoding="utf-8" standalone="no" ?>\n')
         file.write(str(myList))
         file.close()
@@ -20,7 +21,8 @@ def addFiles():
         query = db.query('SELECT objectgroup.group_number, objectgroup.name FROM objectgroup')
 
         listGroup = ET.Element('listGroup')
-
+        print("Создание listGroup.xml")
+        print("Выберите какие группы будут включены в отчет, нажав - 1 или 0 - для исключения группы из отчета.")
         for s in query:
             groupItems = ET.SubElement(listGroup,'groupItems')
             groupItems.set('ID', str(s[0]))
@@ -32,7 +34,13 @@ def addFiles():
             var.text = str(s[1])
             var = ET.SubElement(groupItems, 'var')
             var.set('name', 'Enabled')
-            var.text = 'False'
+            print("Включить группу - " + str(s[0]) + " - " + s[1] + "?")
+            f = input()
+            if f == 0:
+                var.text = 'False'
+            else:
+                if f == 1:
+                    var.text = 'True'
 
         myGroup = ET.tostring(listGroup).decode('utf-8')
 
