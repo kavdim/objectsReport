@@ -6,7 +6,8 @@ import addFiles
 
 from os.path import isfile
 
-if isfile('listGroup.xml'):
-    print('****')
-else:
+if isfile('listGroup.xml') != True:#создаем файл с группами и определяем какие будут участвовать в отчете
     addFiles.addFiles()
+
+if isfile('listObjects.xml') != True:#создаем файл с объектами которые принадлежат соответствующим группам
+    addFiles.initListObjects()

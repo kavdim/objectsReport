@@ -5,7 +5,7 @@ import postgresql
 
 # Проверяем наличие файлов, при отсутствии создаем их
 def addFiles():
-    if isfile('delObjects.xml') != True:    # объекты не участвующие в отчетах
+    if isfile('listObjects.xml') != True:    # объекты для формирования отчетов
         listObjects = ET.Element('listObjects')
         listItems = ET.SubElement(listObjects, 'listItems')
 
@@ -13,7 +13,7 @@ def addFiles():
         myList = ET.tostring(listObjects)
         file = open('listObjects.xml', 'w', encoding="utf-8")
         file.write('<?xml version="1.0" encoding="utf-8" standalone="no" ?>\n')
-        file.write(str(myList))
+        file.write(str(myList).encode('utf-8'))
         file.close()
 
     if isfile('listGroup.xml') != True: #Управление группами
@@ -48,3 +48,8 @@ def addFiles():
         file.write('<?xml version="1.0" encoding="utf-8" standalone="no" ?>\n')
         file.write(myGroup)
         file.close()
+
+def initListObjects():
+    parser = ET.parse('listObjects.xml')
+    root = parser.getroot()
+    print(root[0][1])
