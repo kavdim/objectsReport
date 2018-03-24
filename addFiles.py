@@ -39,6 +39,8 @@ def addFiles():
         file.close()
 
 def initListObjects():
-    parser = ET.parse('listObjects.xml')
-    root = parser.getroot()
-    print(root[0][1])
+    if isfile('listGroup.xml') == False:
+        print("Невозможно продолжить работу! Отсутствует файл listGroup.xml который необходим для инилиализации объектов.")
+        break
+    if isfile('listObjects.xml') != True:
+        pass
