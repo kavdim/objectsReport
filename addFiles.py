@@ -39,8 +39,16 @@ def addFiles():
         file.close()
 
 def initListObjects():
+    strAtrib = []
     if isfile('listGroup.xml') == False:
         print("Невозможно продолжить работу! Отсутствует файл listGroup.xml который необходим для инилиализации объектов.")
-        break
     if isfile('listObjects.xml') != True:
-        pass
+        db = postgresql.open('pq://root:root@localhost:5432/mgs?client_encoding=utf8')
+
+        mydoc = ET.parse('listGroup.xml')
+        root = mydoc.getroot()
+
+        for pars in root:
+            for subelem in pars:
+                strAtrib.append(subelem.text)
+        print(strAtrib)
