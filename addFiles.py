@@ -39,7 +39,7 @@ def addFiles():
         file.close()
 
 def initListObjects():
-    strAtrib = []
+    strAtrib = [[]]
     if isfile('listGroup.xml') == False:
         print("Невозможно продолжить работу! Отсутствует файл listGroup.xml который необходим для инилиализации объектов.")
     if isfile('listObjects.xml') != True:
@@ -48,7 +48,14 @@ def initListObjects():
         mydoc = ET.parse('listGroup.xml')
         root = mydoc.getroot()
 
+        i = 0
+
         for pars in root:
+            f = 0
+            strAtrib.append(i)
             for subelem in pars:
-                strAtrib.append(subelem.text)
+                strAtrib[i].append(subelem.text)
+                f += 1
+            i += 1
+
         print(strAtrib)
