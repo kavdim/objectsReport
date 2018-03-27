@@ -47,15 +47,10 @@ def initListObjects():
 
         mydoc = ET.parse('listGroup.xml')
         root = mydoc.getroot()
-
         i = 0
-
         for pars in root:
-            f = 0
-            strAtrib.append(i)
             for subelem in pars:
                 strAtrib[i].append(subelem.text)
-                f += 1
-            i += 1
-
+            i = i + 1
+            strAtrib.append([i])
         print(strAtrib)
